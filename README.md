@@ -1,0 +1,20 @@
+## NOTE_23_V02-user 14 UP1A.231005.007 1730361790 release-keys
+- Manufacturer: ssh telecom smc (pvt.) ltd
+- Platform: common
+- Codename: NOTE_23
+- Brand: VGO_TEL
+- Flavor: sys_mssi_64_ww_armv82-user
+- Release Version: 14
+- Kernel Version: 5.10.205
+- Id: UP1A.231005.007
+- Incremental: 1730358553
+- Tags: release-keys
+- CPU Abilist: arm64-v8a,armeabi-v7a,armeabi
+- A/B Device: true
+- Treble Device: true
+- Locale: en-US
+- Screen Density: undefined
+- Fingerprint: VGO_TEL/NOTE_23_V02/NOTE_23:14/UP1A.231005.007/1730358553:user/release-keys
+- OTA version: 
+- Branch: NOTE_23_V02-user-14-UP1A.231005.007-1730361790-release-keys
+- Repo: vgo_tel_note_23_dump

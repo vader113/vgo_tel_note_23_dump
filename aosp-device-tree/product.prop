@@ -1,0 +1,11 @@
+# Miscellaneous
+remote_provisioning.hostname=remoteprovisioning.googleapis.com
+ro.com.android.mobiledata=false
+ro.com.google.acsa=true
+ro.com.google.gmsversion=14_202408
+ro.com.google.lens.oem_camera_package=com.mediatek.camera
+ro.odm.ram_expansion_array3=1
+ro.opa.eligible_device=true
+ro.product.cpu.pagesize.max=4096
+ro.setupwizard.rotation_locked=true
+
