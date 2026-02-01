@@ -1,0 +1,9 @@
+on post-fs-data
+	mkdir /data/system/swap 0775 root root
+
+service enableswap /system/system_ext/bin/enableswap
+	class late_start
+	oneshot
+
+#on property:sys.boot_completed=1
+#	exec_background /vendor/bin/enableswap
