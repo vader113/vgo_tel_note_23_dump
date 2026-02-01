@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+ <item-info> 
+    <name> ; ; </name>
+        <id>default</id>
+ </item-info>
+ 
+  <item-info> 
+    <name> ; ; </name>
+        <id>theme_resource_1</id>
+ </item-info>
+ 
+ <item-info> 
+    <name> ; ; </name>
+        <id>theme_resource_2</id>
+ </item-info>
+ 
+</items>

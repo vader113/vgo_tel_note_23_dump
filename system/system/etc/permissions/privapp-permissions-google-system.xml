@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This XML file declares which signature|privileged permissions should be granted to privileged
+applications in /system on GMS or Google-branded devices.
+It allows additional grants on top of privapp-permissions-platform.xml
+-->
+<permissions>
+    <privapp-permissions package="com.google.android.packageinstaller">
+        <permission name="android.permission.DELETE_PACKAGES"/>
+        <permission name="android.permission.INSTALL_PACKAGES"/>
+        <permission name="android.permission.MANAGE_USERS"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+        <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+        <permission name="android.permission.UPDATE_APP_OPS_STATS"/>
+        <permission name="android.permission.USE_RESERVED_DISK"/>
+    </privapp-permissions>
+    <privapp-permissions package="com.google.android.tag">
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+    </privapp-permissions>
+    <privapp-permissions package="com.google.android.apps.books">
+        <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    </privapp-permissions>
+	<!-- prize added by YZHD,for GtsFeaturesTestCases com.google.android.features.gts.GoogleFeaturesTest#testFeatureTurboPreload,20221128,begin-->
+    <privapp-permissions package="com.google.android.apps.turbo">
+        <deny-permission name="android.permission.ACCESS_AMBIENT_LIGHT_STATS"/>
+        <permission name="android.permission.BATTERY_PREDICTION"/>
+        <permission name="android.permission.BATTERY_STATS"/>
+        <deny-permission name="android.permission.BRIGHTNESS_SLIDER_USAGE"/>
+        <permission name="android.permission.CHANGE_APP_IDLE_STATE"/>
+        <permission name="android.permission.CHANGE_APP_LAUNCH_TIME_ESTIMATE"/>
+        <deny-permission name="android.permission.CONFIGURE_DISPLAY_BRIGHTNESS"/>
+        <permission name="android.permission.PACKAGE_USAGE_STATS"/>
+        <permission name="android.permission.POWER_SAVER"/>
+        <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+    </privapp-permissions>
+	<!-- prize added by YZHD,for GtsFeaturesTestCases com.google.android.features.gts.GoogleFeaturesTest#testFeatureTurboPreload,20221128,end-->
+</permissions>

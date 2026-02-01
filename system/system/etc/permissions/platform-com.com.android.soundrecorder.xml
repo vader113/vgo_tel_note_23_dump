@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+ <!--prize added lanbin, fixbug 85682 in SoundRecorder 20210821-start-->
+	<allow-in-power-save package="com.android.soundrecorder" />
+	<!--prize added lanbin, fixbug 85682 in SoundRecorder 20210821-end-->
+</permissions>

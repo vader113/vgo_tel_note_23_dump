@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+   <PlatformWhitelist>
+        <App1>com.google.android.dialer</App1>
+        <App1>com.google.android.contacts</App1>
+        <App1>com.android.chrome</App1>
+        <App1>com.android.settings</App1>
+        <App1>com.google.android.apps.photos</App1>
+        <App1>com.mediatek.camera</App1>
+        <App1>com.dobest.securitycenter</App1>
+   </PlatformWhitelist>
+
+   <!-- prize added by liufan, for performance opt, 2022-7-22 -->
+   <CpuThreshold>85</CpuThreshold>
+   <CpuTarget>70</CpuTarget>
+   <PolicyLevel>6</PolicyLevel>
+
+   <ScreenOffClean>true</ScreenOffClean>
+   <MusicDelayTime>0</MusicDelayTime>
+   <CleanDelayTime>10000</CleanDelayTime>
+   <NotificationDelayTime>43200000</NotificationDelayTime>
+   <!-- deprecated. Not working. -->
+   <!-- <FreeThreshold>819200</FreeThreshold> -->
+</configuration>

@@ -1,0 +1,25 @@
+{
+  "packages": [
+    {
+      "name": "com.instagram.android",
+      "activities": [
+        "com.instagram.mainactivity.InstagramMainActivity"
+      ]
+    },
+    {
+      "name": "com.facebook.katana",
+      "activities": [
+        "com.facebook.katana.LoginActivity",
+        "com.facebook.katana.activity.FbMainTabActivity"
+      ]
+    },
+    {
+      "name": "com.google.android.youtube",
+      "activities": [
+        "com.google.android.youtube.app.honeycomb.Shell$HomeActivity",
+        "com.google.android.apps.youtube.app.watchwhile.WatchWhileActivity",
+        "com.google.android.apps.youtube.app.watchwhile.InternalMainActivity"
+      ]
+    }
+  ]
+}

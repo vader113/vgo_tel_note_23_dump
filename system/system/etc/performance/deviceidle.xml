@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allwhitelist>
+    <pkg name="com.whatsapp" runback="true" deviceidle="true"/>
+    <pkg name="com.facebook.orca" runback="true" deviceidle="true"/>
+</allwhitelist>

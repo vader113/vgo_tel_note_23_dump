@@ -1,0 +1,23 @@
+# pri add by lihuangyuan,pri tools
+
+on late-init
+    # for mtk
+    chmod 0664 /proc/cpu_loading/curr_cpu_loading
+    # for all
+    chmod 0664 /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq 
+    
+on post-fs-data   
+    mkdir /data/prize/local
+    chmod 0664 /data/prize/local
+
+# for mtk aee db    
+on property:persist.sys.pri_aee_db=1
+    setprop persist.vendor.mtk.aee.mode 3
+    setprop persist.vendor.aee.db.count 50
+    setprop persist.vendor.aee.fatal_db.count 8
+
+on property:persist.sys.pri_aee_db=0
+    setprop persist.vendor.mtk.aee.mode 4
+    setprop persist.vendor.aee.db.count 4
+    setprop persist.vendor.aee.fatal_db.count 4
+    

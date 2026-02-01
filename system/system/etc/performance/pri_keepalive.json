@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "3g-apps": [
+  ],
+  "3g-persist": [
+  ],
+  "4g-apps": [
+  ],
+  "4g-persist": [
+  ],
+  "6g-apps": [
+  ],
+  "6g-persist": [
+  ],
+  "removetask-ignore_kill": {
+    "3g-apps": [],
+    "4g-apps": [],
+    "6g-apps": [
+      "com.whatsapp",
+      "com.tencent.mm",
+      "com.tencent.wework",
+      "com.facebook.lite",
+      "com.facebook.katana",
+      "com.google.android.youtube"
+    ]
+  }
+}

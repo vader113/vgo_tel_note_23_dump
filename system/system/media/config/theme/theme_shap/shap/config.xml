@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+ <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_default</id>
+ </item-info>
+ 
+  <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_1</id>
+ </item-info>
+ 
+ <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_2</id>
+ </item-info>
+ 
+  <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_3</id>
+ </item-info>
+ 
+  <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_4</id>
+ </item-info>
+ 
+  <item-info> 
+    <name> ; ; </name>
+        <id>custom_icon_5</id>
+ </item-info>
+ 
+</items>

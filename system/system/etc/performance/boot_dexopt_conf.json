@@ -1,0 +1,20 @@
+{
+	"version": 1,	
+    "bootdexopt_delay":30,
+    "///":"only config nande test app",
+    "bootdexopt":[
+        "com.instagram.android",
+		"com.facebook.katana",
+		"com.google.android.youtube",
+        "com.whatsapp",
+        "com.snapchat.android",
+        "org.telegram.messenger",        
+        
+        "com.google.android.contacts",
+        "com.android.contacts",
+        "com.google.android.dialer",        
+        "com.android.chrome",
+        "com.mediatek.camera",
+        "com.android.settings"        
+    ]
+}

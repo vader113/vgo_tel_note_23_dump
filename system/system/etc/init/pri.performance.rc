@@ -1,0 +1,63 @@
+# prize add by lihuangyuan,for performance
+
+on post-fs-data
+    mkdir /data/prize 0775 system system encryption=None
+    mkdir /data/prize/performance 0775 system system encryption=None
+    mkdir /data/prize/dexopt 0775 system system encryption=None
+    mkdir /data/prize/profiles 0775 system system encryption=None
+    mkdir /data/prize/profiles/download 0771 system system encryption=None
+    mkdir /data/prize/profiles/local 0771 system system encryption=None
+    mkdir /data/prize/profiles/backup 0775 system system encryption=None
+    # for sprd perfmode
+    mkdir /data/vendor/etc
+    chmod 0777 /data/vendor/etc
+ 
+
+   # for default dex2oat,install
+on property:pm.pri.dex2oat-cpu-set=*
+   setprop dalvik.vm.dex2oat-cpu-set ${pm.pri.dex2oat-cpu-set}
+on property:pm.pri.dex2oat-threads=*
+   setprop dalvik.vm.dex2oat-threads ${pm.pri.dex2oat-threads}
+   
+   # for prize dexopt,bg-dexopt/start-app/boot-system
+on property:pm.pri.pri_dex2oat.cpu-set=*
+   setprop pm.dexopt.pri_dex2oat.cpu-set ${pm.pri.pri_dex2oat.cpu-set}
+on property:pm.pri.pri_dex2oat.threads=*
+   setprop pm.dexopt.pri_dex2oat.threads ${pm.pri.pri_dex2oat.threads}
+   
+# for sprd perfmode
+on property:persist.sys.cpconfig=1
+   copy /data/prize/performance/power_scene_config.xml /data/vendor/etc/power_scene_config.xml
+   copy /data/prize/performance/power_resource_file_info.xml /data/vendor/etc/power_resource_file_info.xml
+   chmod 644 /data/vendor/etc/power_scene_config.xml
+   chmod 644 /data/vendor/etc/power_resource_file_info.xml
+   setprop persist.sys.cpconfig 0
+
+on property:persist.sys.sprd.cpconfig=2
+   rm /data/vendor/etc/power_scene_config.xml
+   rm /data/vendor/etc/power_resource_file_info.xml
+   setprop persist.sys.sprd.cpconfig 0
+   
+# for mtk perfmode
+on property:persist.sys.mtk.cpconfig=1
+   copy /data/prize/performance/pri_powerscntbl.xml /data/vendor/powerhal/pri_powerscntbl.xml
+   copy /data/prize/performance/pri_power_app_cfg.xml /data/vendor/powerhal/pri_power_app_cfg.xml
+   chmod 644 /data/vendor/powerhal/pri_powerscntbl.xml
+   chmod 644 /data/vendor/powerhal/pri_power_app_cfg.xml
+   setprop persist.sys.mtk.cpconfig 0
+
+on property:persist.sys.mtk.cpconfig=2
+   rm /data/vendor/powerhal/pri_powerscntbl.xml
+   rm /data/vendor/powerhal/pri_power_app_cfg.xml
+   setprop persist.sys.mtk.cpconfig 0
+
+#for ai perf
+on property:persist.sys.mtk.cpconfig=3 
+   copy /data/prize/performance/ai_power_whitelist.xml /data/vendor/powerhal/ai_power_whitelist.xml
+   chmod 644 /data/vendor/powerhal/ai_power_whitelist.xml
+   setprop persist.sys.mtk.cpconfig 0
+   
+on property:persist.sys.mtk.cpconfig=4
+   rm /data/vendor/powerhal/ai_power_whitelist.xml
+   setprop persist.sys.mtk.cpconfig 0
+   

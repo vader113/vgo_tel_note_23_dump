@@ -1,0 +1,22 @@
+on post-fs-data
+# begin, prize-lifenfen-20180117, add for resmon
+chown system system /proc/resmon_stat
+chmod 0440 /proc/resmon_stat
+
+chown system system /sys/devices/virtual/misc/resmon/system_stat
+chmod 0440 /sys/devices/virtual/misc/resmon/system_stat
+
+chown system system /sys/devices/virtual/misc/resmon/parameters
+chown system system /sys/devices/virtual/misc/resmon/parameters/cpuload_thresh
+chown system system /sys/devices/virtual/misc/resmon/parameters/enable
+chown system system /sys/devices/virtual/misc/resmon/parameters/io_thresh
+chown system system /sys/devices/virtual/misc/resmon/parameters/mem_thresh
+chown system system /sys/devices/virtual/misc/resmon/parameters/trigger_time
+
+chmod 0770 /sys/devices/virtual/misc/resmon/parameters
+chmod 0660 /sys/devices/virtual/misc/resmon/parameters/cpuload_thresh
+chmod 0660 /sys/devices/virtual/misc/resmon/parameters/enable
+chmod 0660 /sys/devices/virtual/misc/resmon/parameters/io_thresh
+chmod 0660 /sys/devices/virtual/misc/resmon/parameters/mem_thresh
+chmod 0660 /sys/devices/virtual/misc/resmon/parameters/trigger_time
+# end, prize-lifenfen-20180117, add for resmon
