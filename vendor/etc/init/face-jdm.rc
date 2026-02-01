@@ -1,0 +1,9 @@
+service vendor.face-default /vendor/bin/hw/vendor.bst.hardware.biometrics.face.jdm-service
+    class hal
+    user system
+    group system input uhid
+
+on post-fs-data
+    mkdir /data/vendor/bst_face_unlock 0775 root system
+    mkdir /data/vendor/bst_face_unlock/images 0775 root system
+

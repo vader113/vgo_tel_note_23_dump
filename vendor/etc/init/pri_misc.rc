@@ -1,0 +1,150 @@
+on post-fs-data
+    chmod 0664 /dev/sostorch
+    chown system system /dev/sostorch
+	chown system system /sys/devices/platform/odm/odm:sostorch/level
+	chown system system /sys/devices/platform/odm/odm:sostorch/mode
+	chown system system /sys/devices/platform/odm/odm:sostorch/enable
+	chmod 0664 /dev/hoperf
+    chown system system /dev/hoperf
+	chown system system /sys/devices/platform/11007000.i2c/i2c-0/0-0076/pressure
+#aw22xxx
+	chown system system /sys/class/leds/breath/brightness
+	chown system system /sys/class/leds/breath/fw
+	chown system system /sys/class/leds/breath/imax
+	chown system system /sys/class/leds/breath/rgb
+	chown system system /sys/class/leds/breath/task0
+	chown system system /sys/class/leds/breath/cfg
+	chown system system /sys/class/leds/breath/effect
+	chown system system /sys/class/leds/breath/hwen
+	chown system system /sys/class/leds/breath/max_brightness
+    chown system system /sys/class/leds/breath/reg
+    chown system system /sys/class/leds/breath/task1
+	chmod 0664 /sys/class/leds/breath/brightness
+	chmod 0664 /sys/class/leds/breath/fw
+	chmod 0664 /sys/class/leds/breath/imax
+	chmod 0664 /sys/class/leds/breath/rgb
+	chmod 0664 /sys/class/leds/breath/task0
+	chmod 0664 /sys/class/leds/breath/cfg
+	chmod 0664 /sys/class/leds/breath/effect
+	chmod 0664 /sys/class/leds/breath/hwen
+	chmod 0664 /sys/class/leds/breath/max_brightness
+	chmod 0664 /sys/class/leds/breath/reg
+	chmod 0664 /sys/class/leds/breath/task1
+#flashlight
+	chown system camera /sys/devices/virtual/flashlight_core/flashlight/flashlight_capability
+	chown system camera /sys/devices/virtual/flashlight_core/flashlight/flashlight_strobe
+	chmod 0664 /sys/devices/virtual/flashlight_core/flashlight/flashlight_capability
+	chmod 0664 /sys/devices/virtual/flashlight_core/flashlight/flashlight_strobe
+#fm_ant
+	chown system system /sys/devices/virtual/fm_ant/fm_ant_data/fm_ant_status
+	chmod 0666 /sys/devices/virtual/fm_ant/fm_ant_data/fm_ant_status
+#scan_led for D5 proj
+	chown system system /sys/devices/platform/11d02000.i2c8/i2c-8/8-0045/reg
+	chmod 0666 /sys/devices/platform/11d02000.i2c8/i2c-8/8-0045/reg
+#air_quality
+	chown system system /sys/devices/virtual/air_quality/air_quality_data/air_quality_data
+	chmod 0666 /sys/devices/virtual/air_quality/air_quality_data/air_quality_data
+#air_quality
+	chown system system /sys/devices/virtual/air_quality/air_quality_data/air_quality_open
+	chmod 0666 /sys/devices/virtual/air_quality/air_quality_data/air_quality_open
+	chown system system /sys/devices/virtual/air_quality/air_quality_data/air_quality_hcho
+	chmod 0666 /sys/devices/virtual/air_quality/air_quality_data/air_quality_hcho
+#irtorch
+	chmod 0666 /sys/class/flashlight_core/flashlight/flashlight_irtorch
+
+#subtorch
+	chmod 0666 /sys/class/flashlight_core/flashlight/flashlight_subtorch
+	
+#prize add by lipengpeng 20210303 start 
+    chmod 0666  /sys/class/flashlight_core/flashlight/flashlight_hwtorch
+    chown system system /sys/class/flashlight_core/flashlight/flashlight_hwtorch
+#wireless
+    chmod 0666  /sys/devices/platform/1100f000.i2c3/i2c-3/3-002b/enabletx
+    chown system system /sys/devices/platform/1100f000.i2c3/i2c-3/3-002b/enabletx
+	chmod 0666  /sys/devices/platform/1100f000.i2c3/i2c-3/3-002b/gettxflag
+    chown system system /sys/devices/platform/1100f000.i2c3/i2c-3/3-002b/gettxflag
+	chmod 0666  /sys/devices/platform/charger/ADC_Charger_Voltage
+    chown system system /sys/devices/platform/charger/ADC_Charger_Voltage
+ #glove
+    chown system system /sys/kernel/prize/smartcover/common_node/state
+    chmod 0666 /sys/kernel/prize/smartcover/common_node/state
+
+
+#prize add by lipengpeng 20210303 start 
+
+
+#exergen
+    chown system system /sys/devices/platform/exergen/open
+    chmod 0666 /sys/devices/platform/exergen/open
+    chown system system /sys/devices/platform/exergen/close
+    chmod 0666 /sys/devices/platform/exergen/close
+    chown system system /sys/kernel/prize/exergen/open
+    chown system system /sys/kernel/prize/exergen/close
+    chmod 0666 /sys/kernel/prize/exergen/open
+    chmod 0666 /sys/kernel/prize/exergen/close
+    chown system system /sys/kernel/fm78100/rawdata/ch0
+    chown system system /sys/kernel/fm78100/rawdata/ch1
+    chown system system /sys/kernel/fm78100/rawdata/ch2
+    chmod 0666 /sys/kernel/fm78100/rawdata/ch0
+    chmod 0666 /sys/kernel/fm78100/rawdata/ch1
+    chmod 0666 /sys/kernel/fm78100/rawdata/ch2
+    
+    
+ #leds
+    chmod 0666 /sys/class/leds/mt6360_pmu_led1/brightness
+    chown system system /sys/class/leds/mt6360_pmu_led1/brightness
+    chmod 0666 /sys/class/leds/mt6360_pmu_led2/brightness
+    chown system system /sys/class/leds/mt6360_pmu_led2/brightness
+    chmod 0666 /sys/class/leds/mt6360_pmu_led3/brightness
+    chown system system /sys/class/leds/mt6360_pmu_led3/brightness
+#rgb leds
+    chmod 0666 /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/brightness
+    chmod 0666 /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/brightness
+    chmod 0666 /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/brightness
+    chmod 0666 /sys/class/leds/blue/pwm_dim_duty
+    chown system system /sys/class/leds/blue/pwm_dim_duty
+#8804
+	chmod 0666 /sys/class/led_ir_led/led_ir_led_data/led_ir_led_read
+    chown system system /sys/class/led_ir_led/led_ir_led_data/led_ir_led_read
+	#ir  led 
+	chmod 0666 /sys/class/led_ir_led/led_ir_led_data/ir_set_led_level
+    chown system system /sys/class/led_ir_led/led_ir_led_data/ir_set_led_level
+	#ir  cut
+	chmod 0666 /sys/class/led_ir_led/led_ir_led_data/ir_cut_config
+    chown system system /sys/class/led_ir_led/led_ir_led_data/ir_cut_config
+	#yellow shansuo
+	chmod 0666 /sys/class/led_ir_led/led_ir_led_data/yellow_led_trigger
+    chown system system /sys/class/led_ir_led/led_ir_led_data/yellow_led_trigger
+	
+	#tp suspend resume
+	chmod 0666 /sys/devices/platform/11e00000.i2c0/i2c-0/0-002e/tp_suspend_resume
+    chown system system /sys/devices/platform/11e00000.i2c0/i2c-0/0-002e/tp_suspend_resume
+	
+	#lcm suspend resume
+	chmod 0666 /sys/class/prize_lcm_state/prize_lcm_status/prize_lcm_status
+    chown system system /sys/class/prize_lcm_state/prize_lcm_status/prize_lcm_status
+#troch
+	chmod 0666 /sys/class/flashlight_core/flashlight/flashlight_torch
+    chown system system /sys/class/flashlight_core/flashlight/flashlight_torch
+	
+	chmod 0666 /proc/ir_camera_motor/ir_camera_motor
+    chown system system /proc/ir_camera_motor/ir_camera_motor
+#hw troch
+	chmod 0666  /sys/class/flashlight_core/flashlight/flashlight_hwtorch
+	chown system system /sys/class/flashlight_core/flashlight/flashlight_hwtorch   
+
+#green red baoshan
+     chmod 0666 /sys/devices/platform/11cb0000.i2c3/i2c-3/3-0065/debug
+	 chown system system /sys/devices/platform/11cb0000.i2c3/i2c-3/3-0065/debug
+	 
+#flashlight
+	chown system system /sys/class/flashlight_core/flashlight/flashlight_fled1
+	chown system system /sys/class/flashlight_core/flashlight/flashlight_fled2
+	chmod 0666  /sys/class/flashlight_core/flashlight/flashlight_fled1
+	chmod 0666  /sys/class/flashlight_core/flashlight/flashlight_fled2
+#charger_pe
+	chown system system /sys/devices/platform/charger/Pump_Express
+	chmod 0666 /sys/devices/platform/charger/Pump_Express
