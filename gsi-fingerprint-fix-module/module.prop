@@ -1,7 +1,7 @@
 id=vgo_note23_gsi_fp_fix
 name=VGO NOTE 23 GSI Fingerprint Fix
-version=1.2.0
-versionCode=3
+version=1.3.0
+versionCode=4
 author=Codex
-summary=Stabilizes vendor.fps_hal startup for GSIs and patches fingerprint SELinux denials.
-description=Waits for TEE/SPI nodes, repeatedly restarts vendor.fps_hal via ctl.start, keeps GSI fingerprint feature flags, and applies sepolicy rules for hal_fingerprint_* THP reads.
+summary=Adds HAL watchdog + proper focaltech property injection for GSIs.
+description=Injects vendor.fingerprint/odm props used by focaltech, waits for TEE/fp nodes, repeatedly brings up vendor.fps_hal, and keeps a watchdog to recover unregistered HAL states.
