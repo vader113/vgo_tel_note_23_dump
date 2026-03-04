@@ -1,3 +1,0 @@
-# Allow vendor fingerprint HAL domains to read THP state without denial spam.
-allow hal_fingerprint_default sysfs_thp_enabled:file r_file_perms
-allow hal_fingerprint_oppo_compat sysfs_thp_enabled:file r_file_perms

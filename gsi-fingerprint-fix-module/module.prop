@@ -1,7 +1,7 @@
 id=vgo_note23_gsi_fp_fix
 name=VGO NOTE 23 GSI Fingerprint Fix
-version=1.3.0
-versionCode=4
+version=1.4.0
+versionCode=5
 author=Codex
-summary=Adds HAL watchdog + proper focaltech property injection for GSIs.
-description=Injects vendor.fingerprint/odm props used by focaltech, waits for TEE/fp nodes, repeatedly brings up vendor.fps_hal, and keeps a watchdog to recover unregistered HAL states.
+summary=Deterministic focaltech fingerprint HAL bring-up for GSIs.
+description=Injects focaltech fp properties and runs finite vendor.fps_hal retries after boot/TEE readiness, avoiding unstable always-on watchdog behavior.
