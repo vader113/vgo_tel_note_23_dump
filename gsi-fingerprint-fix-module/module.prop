@@ -1,0 +1,7 @@
+id=vgo_note23_gsi_fp_fix
+name=VGO NOTE 23 GSI Fingerprint Fix
+version=1.0.0
+versionCode=1
+author=Codex
+summary=Delays/restarts fingerprint HAL until TEE + SPI are ready on GSIs.
+description=Enables fingerprint feature flags on GSIs and reinitializes vendor.fps_hal after teei_daemon and fingerprint device nodes are ready.
