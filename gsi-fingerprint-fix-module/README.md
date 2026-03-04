@@ -3,13 +3,17 @@
 This module is built from the NOTE 23 vendor dump and targets GSI builds where fingerprint is missing or where logs show:
 
 - `Spi's loading is not finished`
+- `Fingerprint HAL not available`
+- `ctl.interface_start ... error code: 0x20`
+- `Could not find 'android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint/default'`
 
 ## What it does
 
 1. Exposes `android.hardware.fingerprint` on the system side so the Settings UI can show fingerprint enrollment on GSIs.
 2. Forces relevant fingerprint/TEE props early in boot.
-3. Waits for `teei_daemon` and `/dev/teei_fp` + fingerprint device nodes, then restarts `vendor.fps_hal` to avoid early-init SPI races.
-4. Sets `persist.sys.phh.fingerprint.nocleanup=1` (useful on PHH-based GSIs to avoid template cleanups causing repeated enrollment breaks).
+3. Overlays `android.hardware.biometrics.fingerprint@2.1-service.rc` and adds an explicit `interface ... IBiometricsFingerprint default` line so lazy HAL startup can work.
+4. Waits for `teei_daemon` and `/dev/teei_fp` + fingerprint device nodes, then restarts/starts fingerprint HAL (`vendor.fps_hal` / `vendor.fingerprint_hal`) to avoid early-init SPI races.
+5. Sets `persist.sys.phh.fingerprint.nocleanup=1` (useful on PHH-based GSIs to avoid template cleanups causing repeated enrollment breaks).
 
 ## Install
 
@@ -18,7 +22,7 @@ This module is built from the NOTE 23 vendor dump and targets GSI builds where f
 3. Reboot.
 4. Check logs:
    - `logcat -s GSI-FP-FIX`
-   - `logcat | grep -i fingerprint`
+   - `logcat | grep -i -e Fingerprint21 -e hwservicemanager -e vendor.fps_hal`
 
 ## Notes
 

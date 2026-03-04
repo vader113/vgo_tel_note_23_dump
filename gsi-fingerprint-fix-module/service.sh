@@ -39,6 +39,23 @@ wait_for_node() {
   return 1
 }
 
+start_fp_hal() {
+  # Prefer interface-driven start (what system_server/hwservicemanager uses).
+  setprop ctl.interface_start android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint/default
+  sleep 1
+
+  # Fallback direct service names seen in NOTE 23 vendor init files.
+  if [ "$(getprop init.svc.vendor.fps_hal)" != "running" ] && [ "$(getprop init.svc.vendor.fingerprint_hal)" != "running" ]; then
+    setprop ctl.start vendor.fps_hal
+    setprop ctl.start vendor.fingerprint_hal
+  fi
+}
+
+stop_fp_hal() {
+  setprop ctl.stop vendor.fps_hal
+  setprop ctl.stop vendor.fingerprint_hal
+}
+
 # Let Android settle, then wait for secure world + fp device exposure.
 sleep 15
 
@@ -59,14 +76,16 @@ FP_NODE_STATUS=$?
 if [ "$TEE_STATUS" -ne 0 ] || [ "$TEE_NODE_STATUS" -ne 0 ] || [ "$FP_NODE_STATUS" -ne 0 ]; then
   log_print "TEE/SPI readiness timeout (tee=$TEE_STATUS teei_fp=$TEE_NODE_STATUS fp_node=$FP_NODE_STATUS)."
 else
-  log_print "TEE and fingerprint nodes are ready; restarting vendor.fps_hal."
+  log_print "TEE and fingerprint nodes are ready; restarting fingerprint HAL."
 fi
 
-# Restart HAL anyway (covers 'Spi\'s loading is not finished' race on first boot).
-setprop ctl.stop vendor.fps_hal
+# Restart HAL anyway (covers early race and rebinds lazy interface mapping).
+stop_fp_hal
 sleep 2
-setprop ctl.start vendor.fps_hal
+start_fp_hal
 
 # Some GSIs only expose UI toggles once this property is present.
 setprop persist.sys.phh.fingerprint.nocleanup 1
+
+log_print "HAL states: vendor.fps_hal=$(getprop init.svc.vendor.fps_hal) vendor.fingerprint_hal=$(getprop init.svc.vendor.fingerprint_hal)"
 log_print "Fingerprint HAL restart sequence complete."

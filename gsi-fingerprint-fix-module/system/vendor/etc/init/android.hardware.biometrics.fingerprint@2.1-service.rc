@@ -1,0 +1,7 @@
+service vendor.fps_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
+    # Keep late start to avoid /data race on MTK vendor blobs.
+    class late_start
+    user system
+    group system input uhid
+    writepid /dev/cpuset/system-background/tasks
+    interface android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint default
