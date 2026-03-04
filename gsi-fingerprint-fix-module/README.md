@@ -1,30 +1,36 @@
 # VGO NOTE 23 GSI Fingerprint Fix (Magisk/KernelSU module)
 
-This module is built from the NOTE 23 vendor dump and targets GSI builds where fingerprint is missing or where logs show:
+This module targets NOTE 23 on GSIs where fingerprint is missing or unstable.
 
-- `Spi's loading is not finished`
-- `Fingerprint HAL not available`
-- `ctl.interface_start ... error code: 0x20`
-- `Could not find 'android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint/default'`
+## Why this revision exists
+
+Your logs show:
+
+- `Control message: Could not find 'android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint/default' for ctl.interface_start`
+- `Control message: Could not find 'vendor.fingerprint_hal' for ctl.start`
+- SELinux denials for `hal_fingerprint_default` / `hal_fingerprint_oppo_compat` reading `sysfs_thp_enabled`
+
+A Magisk module is mounted after early init service parsing, so adding init `interface` mappings from a module is not reliable for `ctl.interface_start` requests. This revision avoids that path.
 
 ## What it does
 
-1. Exposes `android.hardware.fingerprint` on the system side so the Settings UI can show fingerprint enrollment on GSIs.
+1. Exposes `android.hardware.fingerprint` on the system side so the Settings UI can show enrollment on GSIs.
 2. Forces relevant fingerprint/TEE props early in boot.
-3. Overlays `android.hardware.biometrics.fingerprint@2.1-service.rc` and adds an explicit `interface ... IBiometricsFingerprint default` line so lazy HAL startup can work.
-4. Waits for `teei_daemon` and `/dev/teei_fp` + fingerprint device nodes, then restarts/starts fingerprint HAL (`vendor.fps_hal` / `vendor.fingerprint_hal`) to avoid early-init SPI races.
-5. Sets `persist.sys.phh.fingerprint.nocleanup=1` (useful on PHH-based GSIs to avoid template cleanups causing repeated enrollment breaks).
+3. Waits for `teei_daemon`, `/dev/teei_fp`, and fingerprint device node, then directly restarts `vendor.fps_hal`.
+4. Retries restarting `vendor.fps_hal` and logs service state to help diagnose crash loops.
+5. Applies a small `sepolicy.rule` to allow fingerprint HAL domains to read THP sysfs node (`sysfs_thp_enabled`).
+6. Sets `persist.sys.phh.fingerprint.nocleanup=1`.
 
 ## Install
 
-1. Zip the `gsi-fingerprint-fix-module` folder contents (not the parent folder).
+1. Zip the `gsi-fingerprint-fix-module` folder contents (not parent folder).
 2. Flash in Magisk or KernelSU.
 3. Reboot.
 4. Check logs:
    - `logcat -s GSI-FP-FIX`
-   - `logcat | grep -i -e Fingerprint21 -e hwservicemanager -e vendor.fps_hal`
+   - `dmesg | grep -i -e fingerprint -e ctl.start -e ctl.interface_start`
 
 ## Notes
 
 - This module cannot repair a fully broken TrustZone/TEE firmware stack.
-- If `/dev/focaltech_fp` and `/dev/teei_fp` never appear, the issue is kernel/vendor-side and cannot be fixed only from Android userspace.
+- If `/dev/focaltech_fp` and `/dev/teei_fp` never appear, the issue is kernel/vendor-side.

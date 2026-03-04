@@ -1,7 +1,7 @@
 id=vgo_note23_gsi_fp_fix
 name=VGO NOTE 23 GSI Fingerprint Fix
-version=1.1.0
-versionCode=2
+version=1.2.0
+versionCode=3
 author=Codex
-summary=Fixes fingerprint lazy-HAL registration and TEE/SPI startup races on GSIs.
-description=Adds IBiometricsFingerprint lazy-service interface mapping, exposes fingerprint feature flags, and restarts/starts vendor fingerprint HAL after teei + device nodes are ready.
+summary=Stabilizes vendor.fps_hal startup for GSIs and patches fingerprint SELinux denials.
+description=Waits for TEE/SPI nodes, repeatedly restarts vendor.fps_hal via ctl.start, keeps GSI fingerprint feature flags, and applies sepolicy rules for hal_fingerprint_* THP reads.
