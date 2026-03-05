@@ -1,8 +1,6 @@
 #!/system/bin/sh
-sleep 15
+sleep 20
 
-# Restart audio/bluetooth userspace after properties are forced.
-# This helps apply policy changes after dirty flash / first boot.
-killall audioserver 2>/dev/null
-killall vendor.audio-hal 2>/dev/null
-killall com.android.bluetooth 2>/dev/null
+# Restart key services once so updated policy overlays/properties are picked up.
+setprop ctl.restart audioserver
+setprop ctl.restart bluetooth_manager
