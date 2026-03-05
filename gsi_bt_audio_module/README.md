@@ -1,34 +1,35 @@
 # VGO NOTE_23 Bluetooth Audio Port for GSI
 
-This Magisk/KernelSU module ports the stock NOTE_23 vendor Bluetooth audio policy files for Google GSI ROMs.
+This Magisk/KernelSU module ports stock NOTE_23 audio policy XML files for Google GSI ROMs.
 
-## Why this revision
-On GSI, **vendor stays the same** (same MTK blobs / HAL). Routing failures usually come from policy mismatch between GSI framework configs and vendor audio stack.
+## Why this revision (v1.2)
+Your logs showed:
+- `BluetoothAudio HAL is disabled`
+- repeated A2DP start/stop, then route drops back to speaker.
 
-So this module now overlays policy in **both** locations:
-- `vendor/etc` (primary target for vendor audio HAL policy loading)
-- `system_ext/etc` (framework-side policy include compatibility)
+So this revision **keeps BluetoothAudio HAL enabled** and only applies safe compatibility properties.
 
 ## What it changes
-- Overlays these policy XMLs to both `vendor/etc` and `system_ext/etc`:
-  - `audio_policy_configuration.xml`
-  - `audio_policy_configuration_bluetooth_legacy_hal.xml`
-  - `a2dp_audio_policy_configuration.xml`
-  - `a2dp_in_audio_policy_configuration.xml`
-  - `bluetooth_audio_policy_configuration.xml`
-  - `bluetooth_offload_audio_policy_configuration.xml`
-  - `r_submix_audio_policy_configuration.xml`
-  - `usb_audio_policy_configuration.xml`
-- Forces legacy Bluetooth audio HAL path via persist properties.
-- Keeps A2DP offload props aligned with stock dump defaults.
+- Overlays NOTE_23 policy XMLs into both:
+  - `vendor/etc`
+  - `system_ext/etc`
+- Sets:
+  - `persist.bluetooth.a2dp_offload.cap=sbc-aac`
+  - `persist.bluetooth.bluetooth_audio_hal.disabled=false`
+  - `persist.vendor.bluetooth.bluetooth_audio_hal.disabled=false`
+  - `persist.bluetooth.leaudio_offload.disabled=true`
+- Restarts `bluetooth_manager` once after boot to apply properties cleanly.
 
 ## Install
-1. Zip the content of `gsi_bt_audio_module` (not the parent folder).
-2. Flash in Magisk or KernelSU.
+1. Zip contents of `gsi_bt_audio_module` (not parent folder).
+2. Flash in Magisk/KernelSU.
 3. Reboot.
-4. Forget/re-pair the Bluetooth headset.
+4. Forget and re-pair the BT headset.
 
-## Verify after boot
-- `getprop persist.bluetooth.bluetooth_audio_hal.disabled` should be `true`
-- `getprop persist.vendor.bluetooth.bluetooth_audio_hal.disabled` should be `true`
-- BT media route should switch to the headset (not phone speaker)
+## Verify
+```sh
+getprop persist.bluetooth.bluetooth_audio_hal.disabled
+getprop persist.vendor.bluetooth.bluetooth_audio_hal.disabled
+logcat | grep -i "BluetoothAudio HAL"
+```
+Expected: HAL should **not** be disabled, and A2DP should stay connected without speaker fallback.
