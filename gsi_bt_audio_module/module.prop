@@ -1,0 +1,6 @@
+id=vgo_note23_bt_audio_gsi
+name=VGO NOTE_23 BT Audio Policy Port (GSI)
+version=1.2
+versionCode=3
+author=Codex
+description=Ports NOTE_23 audio policy XMLs to vendor+system_ext on GSIs and keeps BluetoothAudio HAL enabled to avoid A2DP speaker fallback loops.
